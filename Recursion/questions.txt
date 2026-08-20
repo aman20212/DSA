@@ -33,3 +33,9 @@ sequence is the sequence of whole
 numbers 1, 1, 2, 3, 5, 8, ... which starts 
 with 1 and 1, and where every number thereafter 
 is equal to the sum of the previous two numbers.
+
+
+isPalindrome
+Write a recursive function called isPalindrome which returns true if 
+the string passed to it is a palindrome (reads the same forward and backward). 
+Otherwise it returns false.

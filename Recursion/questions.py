@@ -46,3 +46,13 @@ def fib_memo(n, memo={}):
     return memo[n]
 
 print(fib_memo(50))  # Output: 12586269025 (Calculates instantly!)
+
+
+def isPalindrome(str):
+    if (len(str) <= 1):
+        return True
+    if (str[0] != str[len(str) - 1]):
+        return False
+    return isPalindrome(str[1:-1])
+    
+print(isPalindrome("121"))
