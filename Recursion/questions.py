@@ -56,3 +56,11 @@ def isPalindrome(str):
     return isPalindrome(str[1:-1])
     
 print(isPalindrome("121"))
+
+
+def someRecursive(a, callback):
+    if (len(a) == 0):
+        return False
+    if (callback(a[0])):
+        return True
+    return someRecursive(a[1:], callback)
