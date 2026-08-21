@@ -60,3 +60,13 @@ function someRecursive(arr, callback){
     return someRecursive(arr.slice(1), callback)
   // add whatever parameters you deem necessary - good luck!
 }
+
+function flatten(arr) {
+  let output = [];
+  if (arr.length === 0) {
+    return false
+  }
+  if (!Array.isArray(arr[0])){
+    output.push(arr[0])
+  }
+}

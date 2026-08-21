@@ -64,3 +64,14 @@ def someRecursive(a, callback):
     if (callback(a[0])):
         return True
     return someRecursive(a[1:], callback)
+
+def flatten(a):
+    if (len(a) == 0):
+        return []
+    head = a[0]
+    tail = a[1:]
+    flathead = flatten(head) if (isinstance(head, list)) else [head]
+    # use + to return a new list, avoid using extend() which modifies the original list
+    return flathead + flatten(tail)
+    
+print(flatten([[1,2], [3], [4,5]]))
