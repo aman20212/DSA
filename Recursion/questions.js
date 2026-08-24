@@ -70,3 +70,16 @@ function flatten(arr) {
     output.push(arr[0])
   }
 }
+
+function capitalizeFirst(arr) {
+  // Base case: empty array returns an empty array
+  if (arr.length === 0) {
+    return [];
+  }
+
+  // Capitalize first letter + attach the rest of the string
+  const capitalized = arr[0][0].toUpperCase() + arr[0].slice(1);
+
+  // Return capitalized word in an array concatenated with the recursive call
+  return [capitalized].concat(capitalizeFirst(arr.slice(1)));
+}

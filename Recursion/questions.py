@@ -75,3 +75,77 @@ def flatten(a):
     return flathead + flatten(tail)
     
 print(flatten([[1,2], [3], [4,5]]))
+
+# 1. Using .append() (Accumulator / Tail Recursion)
+# Idea: .append() adds a single item to the end of an existing list in-place. 
+# We pass an accumulator list (output) down through each recursive frame and 
+# append one capitalized string at a time before moving to the next element.
+
+def capitalize_first_append(arr, output=None):
+    # Initialize output list on the very first call
+    if output is None:
+        output = []
+
+    # Base case: when no elements remain, return accumulated list
+    if len(arr) == 0:
+        return output
+
+    # Build the single capitalized string
+    capitalized_word = arr[0][0].upper() + arr[0][1:]
+    
+    # .append() adds the single string to the accumulator in-place
+    output.append(capitalized_word)
+
+    # Pass the mutated accumulator to the next recursive call
+    return capitalize_first_append(arr[1:], output)
+
+print(capitalize_first_append(['car', 'taco', 'banana']))
+# Output: ['Car', 'Taco', 'Banana']
+
+# 2. Using .extend() (Merging Lists In-Place)
+# Idea: .extend() unpacks an entire iterable (the list returned by the recursive call) 
+# and merges its 
+# elements directly into the current list in-place. 
+# We wrap the current word inside a 1-element list [word], call .extend() with the r
+# ecursive result, and return the modified list.
+
+def capitalize_first_extend(arr):
+    # Base case: return empty list to terminate recursion
+    if len(arr) == 0:
+        return []
+
+    # Capitalize word and wrap it as a single-element list
+    result = [arr[0][0].upper() + arr[0][1:]]
+
+    # .extend() mutates 'result' in-place by unpacking the recursively returned list
+    # Note: .extend() returns None, so we call it as a separate statement
+    result.extend(capitalize_first_extend(arr[1:]))
+
+    # Return the in-place extended list
+    return result
+
+print(capitalize_first_extend(['car', 'taco', 'banana']))
+# Output: ['Car', 'Taco', 'Banana']
+
+
+# 3. Using += (In-Place Concatenation Operator)
+# Idea: When applied to lists, 
+# += calls Python's __iadd__ method, which is the operator equivalent of .extend(). 
+# It updates the left-hand list in-place by appending all items from the recursive call.
+
+def capitalize_first_iadd(arr):
+    # Base case: return empty list
+    if len(arr) == 0:
+        return []
+
+    # Wrap the capitalized word in a list
+    result = [arr[0][0].upper() + arr[0][1:]]
+
+    # '+=' modifies 'result' in-place by unpacking elements from the recursive list
+    result += capitalize_first_iadd(arr[1:])
+
+    # Return the mutated list
+    return result
+
+print(capitalize_first_iadd(['car', 'taco', 'banana']))
+# Output: ['Car', 'Taco', 'Banana']

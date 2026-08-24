@@ -48,3 +48,9 @@ the callback. Otherwise it returns false.
 flatten
 Write a recursive function called flatten which accepts an array of 
 arrays and returns a new array with all values flattened.
+
+capitalizeFirst
+Write a recursive function called capitalizeFirst. 
+Given an array of strings, capitalize the first letter of each string in the array.
+
+
