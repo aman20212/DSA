@@ -203,3 +203,37 @@ def capitalizeWords(words):
 
 words = ['i', 'am', 'learning', 'recursion'];
 print(capitalizeWords(words));
+
+
+
+def stringifyNumbers(obj):
+    new_obj = {}
+    
+    for key, value in obj.items():
+        # Check for numbers (int/float) while excluding booleans
+        if isinstance(value, (int, float)) and not isinstance(value, bool):
+            new_obj[key] = str(value)
+        elif isinstance(value, dict):
+            new_obj[key] = stringifyNumbers(value)
+        else:
+            new_obj[key] = value
+            
+    return new_obj
+
+
+# Test Case
+obj = {
+    "num": 1,
+    "test": [],
+    "data": {
+        "val": 4,
+        "info": {
+            "isRight": True,
+            "random": 66
+        }
+    }
+}
+
+print(stringifyNumbers(obj))
+# Output:
+# {'num': '1', 'test': [], 'data': {'val': '4', 'info': {'isRight': True, 'random': '66'}}}

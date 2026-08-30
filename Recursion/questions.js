@@ -132,3 +132,23 @@ function capitalizeWords (arr) {
   }
   return [arr[0].toUpperCase()].concat(capitalizeWords(arr.slice(1)))
 }
+
+
+
+function stringifyNumbers(obj) {
+  let newObj = {};
+
+  for (let key in obj) {
+    let value = obj[key];
+
+    if (typeof value === 'number') {
+      newObj[key] = value.toString();
+    } else if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      newObj[key] = stringifyNumbers(value);
+    } else {
+      newObj[key] = value;
+    }
+  }
+
+  return newObj;
+}
