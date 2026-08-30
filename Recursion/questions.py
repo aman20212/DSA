@@ -192,3 +192,14 @@ obj2 = {
     "e": {"e": {"e": 2}, "ee": "car"}
 }
 print(nestedEvenSum(obj2))  # Output: 10
+
+
+
+def capitalizeWords(words):
+    if (len(words) == 0):
+        return []
+    return [words[0].upper()] + capitalizeWords(words[1:])
+
+
+words = ['i', 'am', 'learning', 'recursion'];
+print(capitalizeWords(words));

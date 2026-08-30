@@ -58,4 +58,8 @@ nestedEvenSum
 Write a recursive function called nestedEvenSum. 
 Return the sum of all even numbers in an object which may contain nested objects.
 
+capitalizeWords
+Write a recursive function called capitalizeWords. 
+Given an array of words, return a new array containing each word capitalized.
+
 
