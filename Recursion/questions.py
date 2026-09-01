@@ -237,3 +237,35 @@ obj = {
 print(stringifyNumbers(obj))
 # Output:
 # {'num': '1', 'test': [], 'data': {'val': '4', 'info': {'isRight': True, 'random': '66'}}}
+
+
+
+def collect_string(obj):
+    arr = []
+    for key, value in obj.items():
+        if isinstance(value, str):
+            arr.append(value)
+        elif isinstance(value, dict):
+            arr.extend(collect_string(value))  # or: arr += collect_string(value)
+    return arr
+
+
+# Cleaned up top-level indentation (starts at column 0)
+obj = {
+    'stuff': "foo",
+    'data': {
+        'val': {
+            'thing': {
+                'info': "bar",
+                'moreInfo': {
+                    'evenMoreInfo': {
+                        'weMadeIt': "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+print(collect_string(obj))
+# Output: ['foo', 'bar', 'baz']

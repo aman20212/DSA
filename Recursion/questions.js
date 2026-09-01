@@ -152,3 +152,37 @@ function stringifyNumbers(obj) {
 
   return newObj;
 }
+
+
+
+function collectStrings(obj) {
+  let arr = [];
+  for (let key in obj){
+    let value = obj[key];
+    if (typeof(value) === 'string' && value.length > 0) {
+      arr.push(value);
+    } else if(typeof(value) === 'object' && value != null) {
+      arr = arr.concat(collectStrings(value))
+    }
+  }
+  return arr;
+}
+
+
+const obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
